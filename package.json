@@ -1,0 +1,27 @@
+{
+  "name": "tide-panel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrmaxmysterious/Tide-Panel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrmaxmysterious/Tide-Panel/issues"
+  },
+  "homepage": "https://github.com/mrmaxmysterious/Tide-Panel#readme",
+  "dependencies": {
+    "@blazingworks/logger": "^1.0.2",
+    "@blazingworks/logger-transport-prettyconsole": "^1.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "prisma": "^4.9.0"
+  }
+}
