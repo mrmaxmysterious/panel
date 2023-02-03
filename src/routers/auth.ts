@@ -1,6 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const passport = require("passport");
+import { Router } from "express";
+import passport from "passport";
+
+const router = Router();
 
 router.post(
   "/login",
@@ -17,4 +18,4 @@ router.post("/logout", (req, res) => {
   res.redirect("/");
 });
 
-module.exports = router;
+export default router;

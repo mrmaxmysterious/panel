@@ -1,11 +1,17 @@
-const LocalStrategy = require("passport-local").Strategy;
-const prisma = require("./database");
-const bcrypt = require("bcrypt");
-const deleteProps = require("./deleteProps");
+import { Strategy } from "passport-local";
+import { PassportStatic } from "passport";
+import { prisma } from "./database";
+import bcrypt from "bcrypt";
+import deleteProps from "./deleteProps";
+import { User } from "@prisma/client";
 
-module.exports = (passport) => {
+export default function passport(passport: PassportStatic) {
   passport.use(
-    new LocalStrategy(async function verify(username, password, callback) {
+    new Strategy(async function verify(
+      username: string,
+      password: string,
+      callback: any
+    ) {
       try {
         const user = await prisma.user.findUnique({
           where: {
@@ -19,18 +25,18 @@ module.exports = (passport) => {
         if (!doesMatch)
           return callback(null, false, { message: "Incorrect credentials" });
 
-        return callback(null, deleteProps(["password", user]));
+        return callback(null, deleteProps(["password"], user));
       } catch (error) {
         return callback(error);
       }
     })
   );
 
-  passport.serializeUser((user, done) => {
+  passport.serializeUser((user: any, done) => {
     done(null, user.id);
   });
 
-  passport.deserializeUser(async (id, done) => {
+  passport.deserializeUser(async (id: number, done) => {
     const user = await prisma.user.findUnique({
       where: {
         id,
@@ -40,4 +46,4 @@ module.exports = (passport) => {
 
     done(null, user);
   });
-};
+}

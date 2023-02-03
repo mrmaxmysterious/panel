@@ -1,0 +1,1 @@
+{"version":3,"file":"deleteProps.js","sourceRoot":"","sources":["../../src/lib/deleteProps.ts"],"names":[],"mappings":";;AAAA,SAAwB,WAAW,CAAC,KAAY,EAAE,MAAW;IAC3D,IAAI,MAAM,GAAG,MAAM,CAAC;IACpB,KAAK,CAAC,OAAO,CAAC,CAAC,IAAI,EAAE,EAAE;QACrB,OAAO,MAAM,CAAC,IAAI,CAAC,CAAC;IACtB,CAAC,CAAC,CAAC;IAEH,OAAO,MAAM,CAAC;AAChB,CAAC;AAPD,8BAOC"}
