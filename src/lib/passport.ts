@@ -3,7 +3,7 @@ import { PassportStatic } from "passport";
 import { prisma } from "./database";
 import bcrypt from "bcrypt";
 import deleteProps from "./deleteProps";
-import { User } from "@prisma/client";
+import { logger } from "../app";
 
 export default function passport(passport: PassportStatic) {
   passport.use(
@@ -25,8 +25,10 @@ export default function passport(passport: PassportStatic) {
         if (!doesMatch)
           return callback(null, false, { message: "Incorrect credentials" });
 
+        logger.info(`User ${user.username} logged in`);
         return callback(null, deleteProps(["password"], user));
       } catch (error) {
+        console.error(error);
         return callback(error);
       }
     })

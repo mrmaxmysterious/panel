@@ -23,9 +23,9 @@ export const logger = new Logger({
   ],
 });
 
-const app = express();
-
 passportUtil(passport);
+
+const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -36,6 +36,8 @@ app.use((req, _res, next) => {
   );
   next();
 });
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET as string,
@@ -58,6 +60,7 @@ app.use(passport.session());
 
 app.use("/", render);
 app.use("/auth", auth);
+app.use("/api", api);
 
 app.listen(process.env.PORT, () => {
   logger.info(`Server opened on ${process.env.PORT}`);
