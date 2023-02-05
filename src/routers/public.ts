@@ -5,13 +5,15 @@ const router = Router();
 
 router.get("/render/:page", async (req, res) => {
   try {
-    const page = require(`../views/${req.params.page}`);
+    const page = require(`../views/${req.params.page}.ejs`);
     if (!page) return res.status(404).send("Not Found");
-    res.render(`../views/${req.params.page}`, {
+    logger.info(`Rendering ${req.params.page}.ejs`);
+    res.render(`/src/views/${req.params.page}.ejs`, {
       user: req.user,
     });
   } catch (error) {
-    logger.error(`Page not found: /render/${req.params.page}`);
+    logger.error(`Page not found: /views/${req.params.page}.ejs`);
+    console.error(error);
     return res.status(404).json({ message: "Not Found" });
   }
 });

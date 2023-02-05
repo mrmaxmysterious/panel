@@ -29,7 +29,7 @@ passportUtil(passport);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.use((req, res, next) => {
+app.use((req, _res, next) => {
   logger.access(
     `${req.protocol.toUpperCase()}/${req.httpVersion} ${req.method} ${req.path}`
   );
@@ -55,8 +55,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/auth", auth);
 app.use("/", render);
+app.use("/auth", auth);
 
 app.listen(process.env.PORT, () => {
   logger.info(`Server opened on ${process.env.PORT}`);
