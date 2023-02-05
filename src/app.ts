@@ -13,6 +13,7 @@ import PrettyConsoleTransport from "@blazingworks/logger-transport-prettyconsole
 
 import auth from "./routers/auth";
 import render from "./routers/public";
+import api from "./routers/api";
 
 export const logger = new Logger({
   transports: [
