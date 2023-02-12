@@ -14,6 +14,11 @@ import PrettyConsoleTransport from "@blazingworks/logger-transport-prettyconsole
 import auth from "./routers/auth";
 import render from "./routers/public";
 import api from "./routers/api";
+import manager from "./routers/roleSections/manager";
+import media from "./routers/roleSections/media";
+import owner from "./routers/roleSections/owner";
+import staff from "./routers/roleSections/staff";
+import radio from "./routers/roleSections/radio";
 
 export const logger = new Logger({
   transports: [
@@ -61,6 +66,11 @@ app.use(passport.session());
 app.use("/", render);
 app.use("/auth", auth);
 app.use("/api", api);
+app.use("/manager", manager);
+app.use("/media", media);
+app.use("/owner", owner);
+app.use("/staff", staff);
+app.use("/radio", radio);
 
 app.listen(process.env.PORT, () => {
   logger.info(`Server opened on ${process.env.PORT}`);

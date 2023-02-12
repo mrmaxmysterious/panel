@@ -6,7 +6,7 @@ const router = Router();
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/home?auth=true",
+    successRedirect: "/staff/home?auth=true",
     failureRedirect: "/login?auth=false",
   })
 );

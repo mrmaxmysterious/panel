@@ -5,22 +5,35 @@ import { existsSync } from "node:fs";
 
 const router = Router();
 
-router.get("/render/:page", async (req, res) => {
+router.get("/*", async (req, res, next) => {
+  if (req.user) {
+    const filePath = path.join(
+      __dirname,
+      "..",
+      "views",
+      "pages",
+      `index.ejs`
+    );
+    res.redirect("/staff/home")
+  } else {
+    next();
+  }
+});
+
+router.get("/login", async (req, res) => {
   const filePath = path.join(
     __dirname,
     "..",
     "views",
     "pages",
-    `${req.params.page}.ejs`
+    `login.ejs`
   );
   if (!existsSync(filePath)) {
-    logger.error(`Page not found /views/${req.params.page}.ejs`);
+    logger.error(`Page not found /views/login.ejs`);
     return res.status(404).json({ error: true, message: "Not Found" });
   }
-  logger.info(`Rendering ${req.params.page}.ejs`);
-  console.log(req.query);
-  res.render(`pages/${req.params.page}.ejs`, {
-    user: req.user,
+  logger.info(`Rendering login.ejs`);
+  res.render("pages/login.ejs", {
     req,
   });
 });
