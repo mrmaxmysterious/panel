@@ -1,0 +1,31 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Tide - Request Access</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  
+  <body class="bg-gradient-to-br from-cyan-800 to-blue-800">
+    <div class="flex h-screen">
+      <form class="w-full m-auto max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" method="post" action="/auth/request">
+        <img src="https://media.discordapp.net/attachments/840663990086664243/1071775388205842522/New_Project_-_2022-09-07T212819.461.png" class="mb-6 mx-auto max-w-md" />
+        <div class="mb-6">
+          <label for="userename" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+          <input type="username" id="username" name="username"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Yusuf" required>
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+          <input type="password" id="password" name="password"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required>
+        </div>
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Request</button>
+        <br>
+        <p class="text-white"><b>Have an account?</b> <u><a href="/login">Login</a></u></p>
+      </form>
+    </div>
+  
+  </body>
+  

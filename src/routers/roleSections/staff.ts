@@ -8,7 +8,7 @@ const router = Router();
 
 router.get("/*", async (req, res) => {
   const user = req.user as User;
-  if (req.user && user.role === "manager") {
+  if (req.user && user.role === "staff") {
       const filePath = path.join(
         __dirname,
         "..",
