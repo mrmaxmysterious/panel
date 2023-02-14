@@ -9,20 +9,14 @@ const router = Router();
 router.get("/*", async (req, res) => {
   const user = req.user as User;
   if (req.user && user.role === "manager") {
-      const filePath = path.join(
-        __dirname,
-        "..",
-        "views",
-        "pages",
-        `index.ejs`
-      );
-      res.render("pages/index.ejs", {
-        user: req.user,
-        req,
-      });
-    } else {
-      res.redirect("/staff/home");
-    }
+    const filePath = path.join(__dirname, "..", "views", "pages", `index.ejs`);
+    res.render("pages/index.ejs", {
+      user: req.user,
+      req,
+    });
+  } else {
+    res.redirect("/staff/home");
+  }
 });
 
 router.get("/render/:page", async (req, res) => {
@@ -31,15 +25,16 @@ router.get("/render/:page", async (req, res) => {
     "..",
     "views",
     "pages",
+    "radio",
     `${req.params.page}.ejs`
   );
   if (!existsSync(filePath)) {
-    logger.error(`Page not found /views/${req.params.page}.ejs`);
+    logger.error(`Page not found /views/radio/${req.params.page}.ejs`);
     return res.status(404).json({ error: true, message: "Not Found" });
   }
   logger.info(`Rendering ${req.params.page}.ejs`);
   console.log(req.query);
-  res.render(`pages/${req.params.page}.ejs`, {
+  res.render(`pages/radio/${req.params.page}.ejs`, {
     user: req.user,
     req,
   });
