@@ -13,6 +13,14 @@ model User {
   password  String
   role      String   @default("staff")
   disabled  Boolean  @default(false)
+  requested Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Request {
+  id        Int      @id @default(autoincrement())
+  name      String
+  message   String
   createdAt DateTime @default(now())
 }
 
