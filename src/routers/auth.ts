@@ -1,6 +1,8 @@
 import { Router } from "express";
 import passport from "passport";
 import { prisma } from "../lib/database";
+import { RequestAccessBody } from "../schemas";
+import { genSalt, hash } from "bcrypt";
 
 const router = Router();
 
@@ -19,14 +21,27 @@ router.post("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.post("/request", (req, res) => {
-  let newUser = prisma.user.create({
-    data: {
-      username: req.body.username,
-      password: req.body.password,
-      disabled: true
-    }
-  })
+router.post("/request", async (req, res) => {
+  try {
+    const parsedBody = await RequestAccessBody.parseAsync(req.body);
+    const { username, password } = parsedBody;
+
+    const salt = await genSalt(10);
+    const hashed = await hash(password, salt);
+
+    await prisma.user.create({
+      data: {
+        username,
+        password: hashed,
+      },
+    });
+
+    return res.redirect("/requestaccess?requested=true");
+  } catch (error: any) {
+    if (error.issues)
+      return res.redirect("/requestaccess?error=Validation error");
+    return res.redirect("/requestaccess?error=Unexpected error");
+  }
 });
 
 export default router;
