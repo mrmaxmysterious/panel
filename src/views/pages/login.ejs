@@ -1,16 +1,11 @@
-<head>
-  <meta charset="UTF-8">
-  <title>Tide - Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+<%- include("../partials/header.ejs") %>
 
 <body class="bg-gradient-to-br from-cyan-800 to-blue-800">
   <div class="flex h-screen">
     <form class="w-full m-auto max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" method="post" action="/auth/login">
-      <img src="https://media.discordapp.net/attachments/840663990086664243/1071775388205842522/New_Project_-_2022-09-07T212819.461.png" class="mb-6 mx-auto max-w-md" />
+      <img src="https://media.discordapp.net/attachments/840663990086664243/1071775388205842522/New_Project_-_2022-09-07T212819.461.png" class="mb-6 mx-auto max-w-full" />
       <% if (req.query.auth == "false") { %>
-        <div class="w-full p-4 mb-4 text-sm text-white bg-red-500 rounded-lg" role="alert">
+        <div class="w-full p-4 mb-4 text-sm text-white bg-red-500 rounded-lg font-semibold" role="alert">
           Authentication was unsuccessful, try again.
         </div>
       <% } %>
@@ -33,3 +28,4 @@
   </div>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
