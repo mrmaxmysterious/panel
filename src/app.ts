@@ -72,6 +72,8 @@ app.use("/owner", owner);
 app.use("/staff", staff);
 app.use("/radio", radio);
 
+app.disable("x-powered-by");
+
 app.listen(process.env.PORT, () => {
   logger.info(`Server opened on ${process.env.PORT}`);
 });
