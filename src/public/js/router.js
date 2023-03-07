@@ -18,13 +18,15 @@ $(document).ready(() => {
 
     previousURL = currentURL;
   }, 50);
-
+});
+$(document).ready(() => {
   $(document).on("click", "a[target='router']", (e) => {
     if ($(this).attr("href") === "javaScript:void();") return;
-
+  
     currentURL = "";
     previousURL = "";
     e.preventDefault();
+    console.log($(this).attr("href"));
     window.history.pushState("data", "Tide Radio", $(this).attr("href"));
   });
-});
+})
