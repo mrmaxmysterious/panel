@@ -19,10 +19,13 @@ $(document).ready(() => {
     previousURL = currentURL;
   }, 50);
 });
+
 $(document).ready(() => {
+  console.log("hi1")
   $(document).on("click", "a[target='router']", (e) => {
     if ($(this).attr("href") === "javaScript:void();") return;
   
+    console.log(wagwan)
     currentURL = "";
     previousURL = "";
     e.preventDefault();

@@ -25,6 +25,9 @@ export default function passport(passport: PassportStatic) {
         if (!doesMatch)
           return callback(null, false, { message: "Incorrect credentials" });
 
+        if (user.requested || user.disabled) 
+          return callback(null, false, { message: "Account disabled" })
+          
         logger.info(`User ${user.username} logged in`);
         return callback(null, deleteProps(["password"], user));
       } catch (error) {
